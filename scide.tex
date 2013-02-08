@@ -1,17 +1,44 @@
-\documentclass[a4paper,10pt]{article}
-\usepackage[utf8]{inputenc}
+\documentclass[11pt,a4paper]{article}
+\usepackage{lac2013}
+\sloppy
+\newenvironment{contentsmall}{\small}
 
-%opening
 \title{SuperCollider IDE: A Dedicated Integrated Development Environment for SuperCollider code}
-\author{Tim Blechmann, Jakob Leben}
+
+%see lac2012.sty for how to format multiple authors!
+\author
+{Jakob LEBEN
+\\ Group, Lab, Organisation
+\\ Address
+\\ ZIP Town,
+\\ Country,
+\\ Firstname.Lastname@here.edu
+\And
+Tim Blechmann
+\\ Vienna, Austria
+\\ tim@klingt.org
+}
+
+
+
 
 \begin{document}
-
 \maketitle
 
+
 \begin{abstract}
+\begin{contentsmall}
 In short: $SuperCollider_{2013} = kick\{ass\}$
+\end{contentsmall}
 \end{abstract}
+
+\keywords{
+\begin{contentsmall}
+SuperCollider
+\end{contentsmall}
+}
+
+\section{Introduction}
 
 \section{History of SuperCollider and Code Editing Environments}
 
@@ -144,5 +171,16 @@ Details about help integration.
  \end{itemize}
  \item Improved looks, QML
 \end{itemize}
+
+\section{Conclusions}
+
+Concluding text.
+
+\section{Acknowledgements}
+
+Our thanks go to \ldots .
+
+\bibliographystyle{acl}
+\bibliography{sample}
 
 \end{document}
