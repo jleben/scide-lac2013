@@ -31,8 +31,8 @@ Feed the monster.
 Since an IDE demands a tight integration with the target programming language, the question is
 raised immediately regarding positioning of the IDE within the SuperCollider ecosystem: should it be
 joined into a single process with the language interpreter, or rather a process on its own?
-Previously, SC.app was the only one joined with the interpreter into a single process, while Scel,
-Sced, and Scate used the interpreter as a separate child process.
+Previously, SC.app was the only one joined with the interpreter, while Scel, Sced, and Scate used
+the interpreter as a separate child process.
 
 Careful consideration of benefits and drawbacks of the two options brought decision in favor of
 separating the IDE from the interpreter: the most important benefit of this strategy is that the
@@ -59,6 +59,12 @@ the IDE. Similar approach has already been implemented in Scel. Our implementati
 of functionality offered by Qt, which uses a local domain socket on Unix, and a named pipe on
 Windows. The data is passed in YAML format.
 
+Communication with the SuperCollider sound synthesis server takes different forms. The server is
+booted and controlled via the interpreter by evaluating relevant SuperCollider code. After the
+server has booted, direct communication with it is established on the basis of the server's
+preexistent capability of communication using the OpenSoundControl protocol over a network
+connection. The purpose is to monitor the status data sent by the server, which happens periodically
+at a rather fast rate, and hence prefers more efficient and direct mode of communication.
 
 \section{Language-related features}
 
