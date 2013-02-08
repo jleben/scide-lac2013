@@ -1,0 +1,108 @@
+\documentclass[a4paper,10pt]{article}
+\usepackage[utf8]{inputenc}
+
+%opening
+\title{SuperCollider IDE: A Dedicated Integrated Development Environment for SuperCollider code}
+\author{Tim Blechmann, Jakob Leben}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+In short: $SuperCollider_{2013} = kick\{ass\}$
+\end{abstract}
+
+\section{History of SuperCollider and Code Editing Environments}
+
+Since Ice Age, SuperCollider has been slowly waking up from a dormant mode into a fully grown-up
+meme monster, and by December 21 2013 it will have invaded the brains of all two-legged mammals.
+
+\subsection{Existing IDEs}
+
+What are SC.app, Scel, Sced, Scate?
+
+\subsection{Motivation for new IDE}
+
+Feed the monster.
+
+\section{Language-related features}
+
+\subsection{Code typing assistance}
+
+Features that assist in code typing include those common across many IDEs: syntax highlighting,
+autocompletion, and method call hints.
+
+Syntax highlighting for SuperCollider code has been implemented already in SC.app, Scel, Sced, and
+Scate. SC.app's highlighting is not performed on-the-fly while typing, but only on explicit request
+via the user interface. Scel, Sced and Scate, on the other hand, have had on-the-fly highlighting
+support, since they could reuse generic support for syntax highlighting of the powerful general code
+editors within which they operate, by only supplying scripts describing specific syntax highlighting
+rules. \emph{True for all of them?}
+
+Despite these precedents, we have developed syntax highlighting in SuperCollider IDE from scratch.
+It is written purely in C++, to ensure best performance for on-the-fly highlighting. It is performed
+entirely on the basis of lexical code analysis, and attention was paid to strictly match the lexical
+rules obeyed by the SuperCollider language compiler. As a result, we have most efficient and correct
+syntax highlighting for SuperCollider language to-date.
+
+Autocompletion and method call assistance has previously only been implemented in Scel. \emph{really?}
+The main difficulty with these features is that they do not depend only on pre-defined lexical or
+grammatical features, but on concrete available classes and their method in the SuperCollider class
+library. Hence, either the development environment must parse and examine this information from the
+class library files, or it must obtain it by communication with the SuperCollider language
+interpreter.
+
+\subsection{Class library browsing}
+
+Access to SuperCollider language introspection allowed us to implement practical features for
+listing of available classes, methods, as well as quickly jumping to the positions in files
+where they are implemented, or referenced.
+
+Similar feature have previously been implemented in SC.app and Scel.
+
+\section{Help}
+
+Details about help integration.
+
+\section{GUI}
+
+\begin{itemize}
+ \item largely unified look across platforms
+ \item general: central editor area, docks, status bar
+ \item document list
+ \item editor: tabs, split views, line numbering, code evaluation + blinking
+ \item find/replace, regexp
+ \item command line
+ \item post window
+ \item help
+ \item server and interpreter status
+ \item shortcuts
+\end{itemize}
+
+\section{Configuration}
+
+\begin{itemize}
+ \item IDE config: behavior, colors, shortcuts, etc...
+ \item language config
+ \item startup file
+\end{itemize}
+
+
+\section{Future plans}
+
+\begin{itemize}
+ \item SCDoc syntax highlighting
+ \item `Desk \& cards' idea: snippets of code visually and interactively separate
+ \item Visual SynthDef composer
+ \item Visual Pattern composer, visualizer (integrate AlgoScore?)
+ \item More integration:
+ \begin{itemize}
+    \item more server controls
+    \item  embeddable GUI components created \& controlled in sclang
+    \item  scripting (sclang? other language?)
+ \end{itemize}
+ \item Improved looks, QML
+\end{itemize}
+
+\end{document}
