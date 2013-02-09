@@ -56,36 +56,35 @@ development environment and an implementation of GUI widgets.
 When porting SuperCollider to Linux, Stefan Kersten implemented \textbf{scel}, a SuperCollider editor mode for Emacs
 \cite{collision}, which had been the most feature-rich editor for SuperCollider for a long time, as it not only
 supported syntax highlighting, but also some introspection, a limited form of call hints and support for the old
-HTML-base help system.
+HTML-based help system.
 
 At the moment, two other SuperCollider modes have been part of the official distribution: \textbf{scvim} (for vim) or
 \textbf{sced} (for gedit). Before writing the new SuperCollider IDE, one of the authors of this paper
-wrote an editor mode for Kate (\textbf{scate}). Apart from that there were other editors or editor modes,
+wrote an editor mode for Kate (\textbf{scate}). Apart from that, there were other editors or editor modes,
 \textbf{scfront} (a Tcl/Tk based editor), \textbf{qcollider} (a Qt-based editor) and modes for the squeak Smalltalk
 environment, the TextMate editor, Eclipse and probably others \cite{collision}. For the Windows port of SuperCollider, a
-python-based editor called \textbf{PsyCollider} had been developed \cite{dos}, which had been removed from the
-supercollider distribution, as the code was unmaintained, unstable and it was obsolete, when GEdit/sced was ported to
-Windows.
+python-based editor called \textbf{PsyCollider} had first been developed \cite{dos}, but was later removed from
+SuperCollider distribution as the code was unmaintained, unstable and finally made obsolete when gedit and sced were
+ported to Windows.
 
 \subsection{Motivation for new IDE}
 
-Having multiple editors or programming environments for SuperCollider has quite a lot of disadvantages:
+Having multiple editors or programming environments for SuperCollider has numerous disadvantages:
 
 \begin{itemize}
 \item The user experience vastly differs among the different programming environments.
-\item Every programming environment has to be maintained separately, while long-term maintenance turned out to be a
-  problem. Especially the little development resources are spread among different projects instead on focussing on only
-  one system.
+\item Each programming environment has to be maintained separately, and long-term maintenance turned out to be a
+  problem. The scarce development resources are spread among different projects instead of focused on a single system.
 \item No existing environment is working out of the box on every supported operating system.
-\item Some environments like scvim or scel are based on editors that are not very accessible for beginners.
+\item Some environments (e.g. scvim or scel) are based on editors that are not very accessible for beginners.
 \end{itemize}
 
-In late 2011 the authors therefore decided to start the development of a new IDE that is dedicated to SuperCollider (not
-merely an editor mode). The main motivation was to provide an IDE that provides a unified user experience across all
-supported platforms and that is both easy to use for beginners and powerful so that experienced users don't feel the
+In late 2011 the authors therefore decided to start the development of a new IDE dedicated to SuperCollider (not
+merely an editor mode). The main motivation was to provide an IDE that would offer a unified user experience across all
+supported platforms and that would be both easy to use for beginners and powerful so that experienced users don't feel the
 need to switch to an advanced editor like Emacs.
 
-Since Jakob had already implemented the GUI widgets of sclang in Qt to make them cross-platform, the choice of the GUI
+Since Jakob had already implemented the GUI widgets of sclang in Qt to make them cross-platform, the choice of GUI
 framework for the new IDE was clear.
 
 \section{Basic architecture}
