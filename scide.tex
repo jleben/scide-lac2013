@@ -173,9 +173,9 @@ all classes), hence completion only starts after 3 characters have been typed.
 Although the current code base would easily support completion of built-ins (e.g.
 \verb|topEnvironment|) and method names in functional notation (e.g. \verb|min(1,2)|) we have
 decided to avoid that. The reason is that, formally, those cases would compete with other cases for
-which we currently do not offer completion: e.g. variable names in scope. It has been argued that
-completion may be understood (especially by novices) as the set of all and the only allowed options,
-and hence misleading when incomplete.
+which we currently do not offer completion: e.g. variable names in scope. It has been argued by
+one of the authors that autocompletion options may be understood (especially by novices) as the set
+of all and the only allowed options in a specific context, and hence misleading when incomplete.
 
 The completion menu is hidden if the currently typed text matches one of the options exactly. In
 that case, the user's intention has likely been met, so the menu would only present an obstacle to
