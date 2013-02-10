@@ -130,34 +130,36 @@ Autocompletion is offered in the following cases:
 \begin{itemize}
  \item Class names:
  
- e.g. \verb|Sin...|
+ \verb|Sin<...>|
  
  Since class names exclusively begin with an uppercase letter, it is straightfoward
  to complete them from the set of all classes.
  
  \item Method names following class names:
  
- e.g. \verb|Array.fi...|
+ \verb|Array.<...>|
  
  They are completed from the set of class methods of the
  readily-available class.
  
  \item Method names following literals and built-ins
  
- e.g. \verb|123.ra...; topEnvironment.ke|
+ \verb|123.<...>|
+ 
+ \verb|topEnvironment.<...>|
  
  They are completed from the set of instance methods of the class
  inferred from the literal or the built-in.
  
  \item Method names following a variable name:
  
- e.g. \verb|func.pla...|
+ \verb|func.<...>|
  
  The class is not inferred, so the method is completed from the set of all methods of all classes.
  
 \end{itemize}
 
-Completion of methods of known classes starts immediately when the dot '.' is typed. One exception
+Completion of methods of known classes starts immediately when the dot `.' is typed. One exception
 to this is the case of methods of Integer literals: it only begins after 1 character has been
 typed, or else redundant completion would be triggered on a dot in a Float literal, which proved
 to be a rather annoying experience.
@@ -165,11 +167,12 @@ to be a rather annoying experience.
 In other cases the list of candidates may be quite large (the set of all classes, or all methods of
 all classes), hence completion only starts after 3 characters have been typed.
 
-Although the current code base would easily support completion of built-ins and method names in
-function call syntax (e.g. \verb|min(1,2)|) we have decided to avoid that. The reason is that,
-formally, those cases would compete with other cases for which we currently do not offer completion:
-e.g. variable names in scope. It has been argued that completion may be understood (especially by
-novices) as the set of all and the only allowed options, and hence misleading when incomplete.
+Although the current code base would easily support completion of built-ins (e.g.
+\verb|topEnvironment|) and method names in function call syntax (e.g. \verb|min(1,2)|) we have
+decided to avoid that. The reason is that, formally, those cases would compete with other cases for
+which we currently do not offer completion: e.g. variable names in scope. It has been argued that
+completion may be understood (especially by novices) as the set of all and the only allowed options,
+and hence misleading when incomplete.
 
 The completion menu is hidden if the currently typed text matches one of the options exactly. In
 that case, the user's intention has likely been met, so the menu would only present an obstacle to
@@ -177,10 +180,26 @@ changing activity: evaluating code, moving to another position in code, etc. How
 a point of debate, as it would be possible to automatically detect the change of activity and close
 the menu.
 
-As already noted, there is potential to improve the domain of autocompletion (e.g. variables in
-scope, inferring class of a variable by assignment, etc.). Although different aspects of usability
-often demand trade-offs, we will continue to refine the behavior so as to maximize usefulness and
-intuitivity of autocompletion.
+Although different aspects of usability often demand trade-offs, we will continue to refine the
+behavior so as to maximize usefulness and intuitivity of autocompletion.
+
+As already noted, there is potential to improve the domain of autocompletion to include:
+\begin{itemize}
+ \item Variables in scope:
+ 
+ \verb|var abcdef; abc<...>|
+ 
+ \item Inferring class of Array and Event literals:
+ 
+ \verb|[1,2,3].<...>|
+ 
+ \verb|(freq: 321).<...>|
+ 
+ \item Inferring class of variables by assignment
+ 
+ \verb|x = [1,2,3]; x.<...>|
+ 
+\end{itemize}
 
 \subsection{Method call assistance}
 
