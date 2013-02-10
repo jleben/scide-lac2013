@@ -121,10 +121,13 @@ correct syntax highlighting for SuperCollider language to-date.
 
 \subsection{Autocompletion}
 
-As a weakly-typed programming language, SuperCollider poses limitations on the possibility of
-automatic code completion, as compared to strongly-typed languages (e.g. C, C++). Namely, it is
-not always possible to infer the type of a variable identifier, and hence the set of its methods. We
-have worked in SuperCollider IDE towards offering completion as far as possible within these limitations.
+Automatic code completion (autocompletion) consists of offering the user a selection of possible
+continuations of text being typed, based on context.
+
+As a weakly-typed programming language, SuperCollider poses limitations on the possibilities of
+autocompletion, compared to strongly-typed languages (e.g. C, C++). Namely, it is not always
+possible to infer the type of a variable identifier, and hence the set of its methods. We have
+worked in SuperCollider IDE towards offering completion as far as possible within these limitations.
 
 Autocompletion is offered in the following cases:
 \begin{itemize}
@@ -168,7 +171,7 @@ In other cases the list of candidates may be quite large (the set of all classes
 all classes), hence completion only starts after 3 characters have been typed.
 
 Although the current code base would easily support completion of built-ins (e.g.
-\verb|topEnvironment|) and method names in function call syntax (e.g. \verb|min(1,2)|) we have
+\verb|topEnvironment|) and method names in functional notation (e.g. \verb|min(1,2)|) we have
 decided to avoid that. The reason is that, formally, those cases would compete with other cases for
 which we currently do not offer completion: e.g. variable names in scope. It has been argued that
 completion may be understood (especially by novices) as the set of all and the only allowed options,
@@ -202,6 +205,66 @@ As already noted, there is potential to improve the domain of autocompletion to 
 \end{itemize}
 
 \subsection{Method call assistance}
+
+Method call assistance involves displaying a list of argument names and their default values, to aid
+entering expressions for arguments in a method call.
+
+It is implemented both for receiver notation as well as functional notation. In functional notation,
+an argument is prepended to denote the receiver of the message.
+
+The assistance is invoked when a relevant opening bracket `(' is typed, or a comma `,' is typed to
+separate arguments, and additionally with a keyboard shortcut when the text cursor is anywhere
+within the brackets surrounding the arguments.
+
+This assistance is subject to the same limitations as autocompletion, due to a weakly-typed
+language: to disambiguate the method, its owner class must be known. However, we have found a
+pragmatic solution: where the class can not be inferred, we let the user pick a class via a pop-up
+menu.
+
+Hence, the following examples will offer assistance directly:
+
+\verb|SinOsc.ar(|
+
+\verb|123.forBy(|
+
+...while the following will first display a list of classes that implement the method, then offer
+method call assistance once a class is selected:
+
+\verb|min(|
+
+\verb|x.play(|
+
+\verb|[1,2,3].inject(|
+
+There is one special case in SuperCollider language where the method name is not explicit, namely
+an opening bracket immediately following a class name:
+
+\verb|Synth(|
+
+In this case, the class method `new' is implied, and SuperCollider IDE takes this into account and
+offers appropriate assistance.
+
+Once the assistance is invoked, the name of the current argument being typed is highlighted, which
+is of great help when the number of arguments is large, or the expression for an argument is very
+long.
+
+Moreover, one can quickly insert and cycle through available argument names with a press of the Tab
+key, in order to realize argument addressing by name, as in:
+
+\verb|SinOsc.ar(456, add: 1, mul:|
+
+Once assistance has been activated for a particular method call, it remains active in the
+background while assistance for a nested method call is being performed: when the user
+finishes typing the inner call, assistance is automatically displayed for the outer call again.
+
+This is especially useful in case assistance is based on explicit class selection (as explained
+above) - the selection is remembered during nested assistances so that method disambiguation does
+not need to be repeated.
+
+As can be seen from examples above, this assistance would also benefit from increased ability to
+automatically infer classes from text. Nevertheless, the described solution via explicit class
+selection will remain to be useful where the intended method is absolutely ambiguous.
+
 
 \section{Class library browsing}
 
