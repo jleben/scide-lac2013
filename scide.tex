@@ -266,13 +266,27 @@ automatically infer classes from text. Nevertheless, the described solution via 
 selection will remain to be useful where the intended method is absolutely ambiguous.
 
 
-\section{Class library browsing}
+\section{Class library navigation}
 
-Access to SuperCollider language introspection allowed us to implement practical features for
-listing of available classes, methods, as well as quickly jumping to the positions in files
-where they are implemented, or referenced.
+Within the SuperCollider community, the border between system developers and users has always been
+quite fuzzy. Furthermore, writing musical code often involves development of classes for purposes of
+a specific musical task and for personal class libraries. Jumping from code that uses a class to
+code that implements it is hence a frequent need.
 
-Similar feature have previously been implemented in SC.app and Scel.
+The SuperCollider language interpreter has since the beginning featured introspection into where
+each class and method is implemented, and referenced within the class library. Existing development
+environments have already harnessed these capabilities to offer navigation between usage and
+definition via GUI.
+
+SuperCollider IDE attempts to exploit these capabilities in most practical ways. Handy shortcuts
+will pop up a dialog that lists all methods whose name matches the text under cursor, or all methods
+of the class under cursor. Pressing Return on an entry will open the file at position where the
+selected method or class is implemented. The same dialog contains a search field which can be used
+to search for any class or method.
+
+An equivalent dialog is implemented also for class and method references: the listing contains
+all methods that contain references to another class or method.
+
 
 \section{Help}
 
