@@ -287,10 +287,46 @@ to search for any class or method.
 An equivalent dialog is implemented also for class and method references: the listing contains
 all methods that contain references to another class or method.
 
+The shortcuts and menu actions that bring up these dialogs work just as well in the code editor,
+as in any other GUI element that may contain code: the command line, the post window, and the help
+browser.
+
+Moreover, invoking help-related shortcuts within these dialogs will navigate the help browser to the
+help page related to the class or method selected in the dialog. Help and class library navigation
+are thus very efficiently linked.
 
 \section{Help}
 
-Details about help integration.
+Recently, the traditional HTML-based help system has been superseded by \textbf{SCDoc}, authored by
+Jonatan Liljedahl, where help documents are written in a markup language developed specifically
+for this purpose, and rendered to HTML on demand. The benefits are:
+\begin{itemize}
+ \item Documentation is always up-to-date.
+ \item Content is separate from style; consistent style can easily be applied to all documentation.
+ \item Content may potentially be rendered to other formats than HTML, by implementing different
+rendering components.
+\end{itemize}
+
+Interaction with SCDoc's on-demand rendering has previously only been implemented within the
+SuperCollider language, using its internal GUI capabilities. SuperCollider IDE is the first
+development environment to integrate the new help system into its own GUI.
+
+The IDE requests on-demand rendering to HTML documents, which are then displayed in the integrated
+help browser. This means that the displayed document along with the entire browsing history is
+preserved across class library recompilations and interpreter restarts.
+
+The help system is tightly integrated with GUI components: a shortcut will render and display a
+relevant help document for the text under cursor, when it is invoked within the code editor,
+the command line, the post window, the help browser itself, or - as noted above - for the selected
+entry in the class and method implementation and reference dialogs.
+
+As featured already in the SuperCollider language-based help browser, example code in help documents
+may also be evaluated. The benefit of integration with the IDE is that the shortcut for evaluation
+is identical to the one in the code editor, even when customized by the user via the IDE
+configuration dialog.
+
+Likewise, the same shortcut for class/method implementation and reference lookup may be used within
+the help browser, just as in other GUI components.
 
 \section{GUI}
 
