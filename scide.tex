@@ -1,11 +1,11 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{lac2013}
+\usepackage{booktabs}
 \sloppy
 \newenvironment{contentsmall}{\small}
 
 \title{SuperCollider IDE: A Dedicated Integrated Development Environment for SuperCollider code}
 
-%see lac2012.sty for how to format multiple authors!
 \author
 {
 Jakob LEBEN
@@ -67,7 +67,7 @@ python-based editor called \textbf{PsyCollider} had first been developed \cite{d
 SuperCollider distribution as the code was unmaintained, unstable and finally made obsolete when gedit and sced were
 ported to Windows.
 
-\subsection{Motivation for new IDE}
+\subsection{Motivation for the new IDE}
 
 Having multiple editors or programming environments for SuperCollider has numerous disadvantages:
 
@@ -87,7 +87,29 @@ need to switch to an advanced editor like Emacs.
 Since Jakob had already implemented the GUI widgets of sclang in Qt to make them cross-platform, the choice of GUI
 framework for the new IDE was clear.
 
-\section{Basic architecture}
+\section{Overview of the new IDE}
+
+\subsection{Appearance}
+
+The new IDE has a single-window design, Figure \ref{fig:mainwin} shows the default appearance on Ubuntu. It uses one
+main code editing widget and docked widgets for the integrated help browser, the sclang post widget and the document
+browser. These widgets can be docked to other positions of the main window or undocked and moved out of the main window,
+e.g. to place them on a second screen or the like.
+
+The code editor widget displays uses tabs to switch between multiple open documents and it can be split horizontally and
+vertically to show more than one document. The status bar on the bottom of the main window is used to show the state of
+the sclang interpreter and the default synthesis server. The server status window is a compact alternative to the
+SuperCollider server window, showing status information like CPU utilization, number of synths, groups, synthdefs etc.
+
+
+\begin{figure*}[]
+  \centering
+  \label{fig:mainwin}
+  Screenshot
+  \caption{The SuperCollider IDE running on Ubuntu}
+\end{figure*}
+
+\subsection{Basic Architecture}
 
 Since an IDE demands a tight integration with the target programming language, the question was
 raised immediately whether the new IDE should be coupled with the language interpreter into one
@@ -102,7 +124,7 @@ The major drawback of decoupling is increased effort for inter-process communica
 interpreter. However, scel has proved that a powerful set of features may be built on top of IPC,
 and hence this did not outweight the benefits of decoupling.
 
-\section{Code editing}
+\section{Code Editing}
 
 It is our goal for SuperCollider IDE to implement code-editing assistance on the level of support
 that general-purpose IDEs offer for most widely used programming languages. Namely,
@@ -132,34 +154,34 @@ worked in SuperCollider IDE towards offering completion as far as possible withi
 Autocompletion is offered in the following cases:
 \begin{itemize}
  \item Class names:
- 
+
  \verb|Sin<...>|
- 
+
  Since class names exclusively begin with an uppercase letter, it is straightfoward
  to complete them from the set of all classes.
- 
+
  \item Method names following class names:
- 
+
  \verb|Array.<...>|
- 
+
  They are completed from the set of class methods of the
  readily-available class.
- 
+
  \item Method names following literals and built-ins
- 
+
  \verb|123.<...>|
- 
+
  \verb|topEnvironment.<...>|
- 
+
  They are completed from the set of instance methods of the class
  inferred from the literal or the built-in.
- 
+
  \item Method names following a variable name:
- 
+
  \verb|func.<...>|
- 
+
  The class is not inferred, so the method is completed from the set of all methods of all classes.
- 
+
 \end{itemize}
 
 Completion of methods of known classes starts immediately when the dot `.' is typed. One exception
@@ -189,19 +211,19 @@ behavior so as to maximize usefulness and intuitivity of autocompletion.
 As already noted, there is potential to improve the domain of autocompletion to include:
 \begin{itemize}
  \item Variables in scope:
- 
+
  \verb|var abcdef; abc<...>|
- 
+
  \item Inferring class of Array and Event literals:
- 
+
  \verb|[1,2,3].<...>|
- 
+
  \verb|(freq: 321).<...>|
- 
+
  \item Inferring class of variables by assignment
- 
+
  \verb|x = [1,2,3]; x.<...>|
- 
+
 \end{itemize}
 
 \subsection{Method call assistance}
@@ -265,7 +287,6 @@ As can be seen from examples above, this assistance would also benefit from incr
 automatically infer classes from text. Nevertheless, the described solution via explicit class
 selection will remain to be useful where the intended method is absolutely ambiguous.
 
-
 \section{Class library navigation}
 
 Within the SuperCollider community, the border between system developers and users has always been
@@ -294,6 +315,70 @@ browser.
 Moreover, invoking help-related shortcuts within these dialogs will navigate the help browser to the
 help page related to the class or method selected in the dialog. Help and class library navigation
 are thus very efficiently linked.
+
+\section{Keyboard Interaction}
+
+\begin{table*}[t]
+\begin{tabular}{  l  l  }
+  \toprule
+  Shortcut & Semantics \\
+  \midrule
+  Ctrl-Up/Down & Go to previous/next empty line \\
+  Ctrl-Shift-Up/Down & Move current line up or down \\
+  Ctrl-Alt-Up/Down & Copy current line up or down \\
+  Ctrl-[/] & Go to previous/next bracket \\
+  Alt-[/] & Go to previous/next block \\
+
+  Ctrl-i & Open class library navigation for symbol under cursor \\
+  Ctrl-d & Search documentation for symbol under cursor \\
+  Ctrl-u & Open class library references navigation for symbol symbol under cursor \\
+  Ctrl-e & Open sclang command line \\
+
+  Ctrl-/ & Comment/uncomment line or selection \\
+  Ctrl-Return & Evaluate line, region or selection \\
+  Alt-Return & Evaluate line or selection \\
+
+  \bottomrule
+\end{tabular}
+\caption{Code-editing Shortcuts}
+\label{tab:code_shortcuts}
+\end{table*}
+
+One of the goals of the new IDE is to provide reasonable key bindings for many features, so that users have to use the
+mouse. The biggest challenge turned out to support shortcuts with multiple modifiers across platforms, since different
+desktop environments have default bindings on several modifiers.
+
+The first class of shortcuts is related to code editing in general. Some important shortcuts are listed in Table
+\ref{tab:code_shortcuts}. Apart from the common shortcuts that follow the normal conventions, there are a few shortcuts
+for navigating the code, jumping to region bounds, brackets or empty lines etc. Class library navigation and
+Documentation browser can also be easily accessed via shortcuts. There are two kinds of shortcuts that are
+context-sensitive: the `comment' shortcut comments or uncomments the current line or selection with either single-line
+or multi-line comments. The `code evaluation' comes in two flavors. While both evaluate a selection, their semantics is
+different whether the cursor is located inside a region or not. One shortcut evaluates only the current line, while the
+other evaluates the current region.
+
+The second class of shortcuts allows to control the SuperCollider system and to boot the synthesis server server, dump
+the node tree, show server meters and the like. These shortcuts are listed in Table \ref{tab:system_shortcuts}.
+
+\begin{table*}[b]
+\begin{tabular}{  l  l  }
+  \toprule
+  Shortcut & Semantics \\
+  \midrule
+
+  Ctrl-. & Stop running clocks \& audio synthesis \\
+  Ctrl-Shift-l & Recompile class library \\
+  Ctrl-b & Boot default synthesis server \\
+  Ctrl-m & Show meters for default synthesis server \\
+  Ctrl-t & Dump node tree of default synthesis server \\
+  Ctrl-Shift-t & Dump node tree of default synthesis server with control values \\
+
+  \bottomrule
+\end{tabular}
+\caption{System Control Shortcuts}
+\label{tab:system_shortcuts}
+\end{table*}
+
 
 \section{Help}
 
