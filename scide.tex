@@ -98,11 +98,19 @@ The IDE has a single-window design - it features a single code editing widget at
 used to switch between multiple open documents. The editor widget can also be split horizontally and vertically to show
 more than one document at a time.
 
+Below the code editor, there is an area where various tool panels are displayed on request via keyboard shortcuts:
+\begin{itemize}
+  \item Find/Replace: a standard tool for finding and replacing text in the current document, supporting regular
+expressions and backreferences in replacement
+  \item Go-To-Line: a standard tool to quickly jump to a line in the current document, by line number
+  \item Command Line: a tool for one-line SuperCollider expressions to be evaluated, featuring history
+\end{itemize}
+
 Along the edges of the main window, there are \emph{dock areas}, where other \emph{dockable widgets} may be placed:
 \begin{itemize}
- \item the integrated help browser
- \item the language interpreter output panel
- \item the document browser
+  \item Integrated help browser
+  \item Document browser
+  \item Language interpreter output panel
 \end{itemize}
 
 These widgets can be easily drag-and-dropped to different locations in the dock areas, either side-by-side, or stacked
@@ -472,21 +480,6 @@ for evaluation is identical to the one in the code editor, even when customized 
 
 Moreover, the same shortcuts as in other GUI components may be used for class library lookup (see section
 \ref{class-lib-lookup}).
-
-\section{GUI}
-
-\begin{itemize}
- \item largely unified look across platforms
- \item general: central editor area, docks, status bar
- \item document list
- \item editor: tabs, split views, line numbering, code evaluation + blinking
- \item find/replace, regexp
- \item command line
- \item post window
- \item help
- \item server and interpreter status
- \item shortcuts
-\end{itemize}
 
 \section{Configuration}
 
