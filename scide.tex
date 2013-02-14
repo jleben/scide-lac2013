@@ -91,16 +91,22 @@ framework for the new IDE was clear.
 
 \subsection{Appearance}
 
-The new IDE has a single-window design, Figure \ref{fig:mainwin} shows the default appearance on Ubuntu. It uses one
-main code editing widget and docked widgets for the integrated help browser, the sclang post widget and the document
-browser. These widgets can be docked to other positions of the main window or undocked and moved out of the main window,
-e.g. to place them on a second screen or the like.
+Thanks to the Qt GUI framework, the appearance and the behavior of the GUI is largely equal across supported platforms.
+Figure \ref{fig:mainwin} shows the default appearance on Ubuntu.
 
-The code editor widget displays uses tabs to switch between multiple open documents and it can be split horizontally and
-vertically to show more than one document. The status bar on the bottom of the main window is used to show the state of
-the sclang interpreter and the default synthesis server. The server status window is a compact alternative to the
-SuperCollider server window, showing status information like CPU utilization, number of synths, groups, synthdefs etc.
+The IDE has a single-window design - it features a single code editing widget at the center of the main window. Tabs are
+used to switch between multiple open documents. The editor widget can also be split horizontally and vertically to show
+more than one document at a time.
 
+Along the edges of the main window, there are \emph{dock areas}, where other \emph{dockable widgets} may be placed: the
+integrated help browser, the language interpreter output widget and the document browser. These widgets can be easily
+drag-and-dropped to different locations in the dock areas, either side-by-side, or stacked on top of each other (with
+tabs appearing to switch among the stacked widgets). They can also be undocked and moved out of the main window, e.g. to
+place them on a second screen or the like.
+
+The status bar on the bottom of the main window is used to show the state of the language interpreter and the default
+synthesis server. The server status box is a compact alternative to the SuperCollider server window, showing status
+information like CPU utilization, number of running synths, groups, synthdefs etc.
 
 \begin{figure*}[]
   \centering
