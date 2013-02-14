@@ -7,8 +7,7 @@
 \title{SuperCollider IDE: A Dedicated Integrated Development Environment for SuperCollider code}
 
 \author
-{
-Jakob LEBEN
+{Jakob Leben
 \\ Koper, Slovenia
 \\ jakob.leben@gmail.com
 \And
@@ -89,9 +88,10 @@ framework for the new IDE was clear.
 
 \section{Overview of the new IDE}
 
-\subsection{Appearance}
+\subsection{Graphical Interface}
+\label{gui}
 
-Thanks to the Qt GUI framework, the appearance and the behavior of the GUI is largely equal across supported platforms.
+Thanks to the Qt GUI framework, the appearance and behavior of the GUI is largely equal across supported platforms.
 Figure \ref{fig:mainwin} shows the default appearance on Ubuntu.
 
 The IDE has a single-window design - it features a single code editing widget at the center of the main window. Tabs are
@@ -115,7 +115,7 @@ information like CPU utilization, number of running synths, groups, synthdefs et
   \label{fig:mainwin}
 \end{figure*}
 
-\subsection{Basic Architecture}
+\subsection{System Architecture}
 
 Since an IDE demands a tight integration with the target programming language, the question was
 raised immediately whether the new IDE should be coupled with the language interpreter into one
@@ -129,6 +129,51 @@ responsiveness and control in case running some SuperCollider code locks up in a
 The major drawback of decoupling is increased effort for inter-process communication (IPC) with the
 interpreter. However, scel has proved that a powerful set of features may be built on top of IPC,
 and hence this did not outweight the benefits of decoupling.
+
+\section{Interaction}
+
+Our guidelines in interaction design were to minimize the amount of constantly visible controls, so as not to clutter
+the GUI, but to make the most used functionality quickly accessible via keyboard shortcuts, and advanced features easily
+discoverable via the main menu and \emph{context menus} - i.e. menus that pop up when right-clicking (or Ctrl-clicking)
+on a GUI element and offer a choice of actions relevant for that element.
+
+To combine accessibility and discoverability the following rule is applied: as much functionality as possible is
+in the main menu, and each item in any menu may be assigned a shortcut.
+
+We distribute the IDE with a large set of default shortcuts that cover most frequently used functionality by both
+SuperCollider beginners and experts, and try to adhere to shortcuts in other coding environments.
+
+\subsection{System Control}
+
+The language interpreter is started automatically with the IDE. Nonetheless, it can be stopped and restarted at will
+via the main menu or shortcuts, which is useful if code gets stuck in an infinite loop, or the interpreter simply
+crashes and stops by itself.
+
+The audio engine, on the other hand, is not started automatically, but can be quickly started using a shortcut or the
+main menu. The menu includes other audio-related actions: to dump the node tree, show sound level meters and the like.
+All these actions may also be accessed via the context menu associated with the audio engine status box (see section
+\ref{gui} about the status bar).
+
+\subsection{Code Evaluation}
+
+Code evaluation is, naturally, the most valuable functionality of a SuperCollider coding environment, and making it as
+practical as immaginable is of highest importance.
+
+All existing coding environments support evaluating a line of code using a keyboard shortcut without the need to select
+the line. Moreover, since SuperCollider code is often evaluated in groups of lines, there is typically support for
+enclosing such groups in parenthesis, then double-clicking one of the parenthesis to select the contents in order to
+evaluate them. Such groups of lines are commonly called \emph{regions}.
+
+The SuperCollider IDE goes a step further by automatically detecting the region enclosing the text cursor, so it can be
+evaluated with a shortcut without the need to select it. The evaluation behavior is intelligent: it will evaluate
+either the selection (if any), or the current region (if any), or the current line - where \emph{current} means `at the
+position of the cursor'.
+
+Due to automatic region detection, large portions of code may be evaluated without selection. However, without any
+visual indication, this could easily create confusion and uncertainty as to what code has been evaluated. Hence,
+another very useful feature has been implemented: evaluated code is highlighted, and then the highlighting gradually
+fades away. An additional benefit of highlighting is in demonstration scenarios: not only the demonstrator, but the
+audience as well knows exactly what code is evaluated, and when.
 
 \section{Code Editing}
 
