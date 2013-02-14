@@ -339,6 +339,7 @@ automatically infer classes from text. Nevertheless, the described solution via 
 selection will remain to be useful where the intended method is absolutely ambiguous.
 
 \section{Class library navigation}
+\label{class-lib-lookup}
 
 Within the SuperCollider community, the border between system developers and users has always been
 quite fuzzy. Furthermore, writing musical code often involves development of classes for purposes of
@@ -443,26 +444,29 @@ for this purpose, and rendered to HTML on demand. The benefits are:
 rendering components.
 \end{itemize}
 
-Interaction with SCDoc's on-demand rendering has previously only been implemented within the
-SuperCollider language, using its internal GUI capabilities. SuperCollider IDE is the first
-development environment to integrate the new help system into its own GUI.
+Interaction with SCDoc's on-demand rendering has previously only been implemented within the SuperCollider language,
+using its internal GUI capabilities. The SuperCollider IDE is the first code editing environment to integrate the new
+help system into its own GUI. There are two major benefits:
+\begin{itemize}
+ \item Tighter integration with all the GUI components.
+ \item The last displayed document and the entire browsing history is preserved across class library recompilations and
+interpreter restarts.
+\end{itemize}
 
-The IDE requests on-demand rendering to HTML documents, which are then displayed in the integrated
-help browser. This means that the displayed document along with the entire browsing history is
-preserved across class library recompilations and interpreter restarts.
+The help browser comes in form of a dockable widget (see section \ref{gui}). When the user requests help using a related
+shortcut or menu action, on-demand rendering is performed via the SCDoc system, and the resulting HTML document is
+displayed in the help browser.
 
-The help system is tightly integrated with GUI components: a shortcut will render and display a
-relevant help document for the text under cursor, when it is invoked within the code editor,
-the command line, the post window, the help browser itself, or - as noted above - for the selected
-entry in the class and method implementation and reference dialogs.
+The help system is tightly connected to many GUI components: the help shortcut will recall a relevant help document
+for the text under cursor, when it is invoked within the code editor, the command line, the post window, the help
+browser itself, or - as noted above - for the selected entry in the class and method implementation and reference
+dialogs.
 
-As featured already in the SuperCollider language-based help browser, example code in help documents
-may also be evaluated. The benefit of integration with the IDE is that the shortcut for evaluation
-is identical to the one in the code editor, even when customized by the user via the IDE
-configuration dialog.
+Example code in help documents may also be evaluated. Another benefit of integration with the IDE is that the shortcut
+for evaluation is identical to the one in the code editor, even when customized by the user.
 
-Likewise, the same shortcut for class/method implementation and reference lookup may be used within
-the help browser, just as in other GUI components.
+Moreover, the same shortcuts as in other GUI components may be used for class library lookup (see section
+\ref{class-lib-lookup}).
 
 \section{GUI}
 
