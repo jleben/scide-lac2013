@@ -235,7 +235,7 @@ In.kr(4, 2)
 
 This is currently not implemented yet; a solution will require enhanced grammatical analysis.
 
-\subsection{Syntax highlighting}
+\subsection{Syntax Highlighting}
 
 Existing SuperCollider editor modes typically reuse generic support of their host editors for
 on-the-fly syntax highlighting. SC.app, albeit the oldest and most widely used environment, only
@@ -331,7 +331,7 @@ As already noted, there is potential to improve the domain of autocompletion to 
 
 \end{itemize}
 
-\subsection{Method call assistance}
+\subsection{Method Call Assistance}
 
 Method call assistance involves displaying a list of argument names and their default values, to aid
 entering expressions for arguments in a method call.
@@ -392,7 +392,29 @@ As can be seen from examples above, this assistance would also benefit from incr
 automatically infer classes from text. Nevertheless, the described solution via explicit class
 selection will remain to be useful where the intended method is absolutely ambiguous.
 
-\section{Class library navigation}
+\subsection{Editing Shortcuts}
+
+Akin to powerful general-purpose development environments, SuperCollider IDE provides a set of actions that help
+navigate and edit code and can be assigned arbitrary keyboard shortcuts.
+
+Cursor movement actions include:
+\begin{itemize}
+  \item Jump to next or previous empty line
+  \item Jump to next or previous bracket
+  \item Jumping to next or previous region
+\end{itemize}
+
+Editing actions include:
+\begin{itemize}
+ \item Move current line up or down
+ \item Copy current line up or down
+ \item Comment or uncomment current line or selection
+\end{itemize}
+
+The comment/uncomment action intelligently uses either the single-line or the multi-line comment syntax,
+whichever is more appropriate for the current selection.
+
+\section{Class Library Navigation}
 \label{class-lib-lookup}
 
 Within the SuperCollider community, the border between system developers and users has always been
