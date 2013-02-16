@@ -2,6 +2,7 @@
 \usepackage{lac2013}
 \usepackage{booktabs}
 \usepackage{moreverb}
+\usepackage{url}
 \sloppy
 \newenvironment{contentsmall}{\small}
 
@@ -198,6 +199,7 @@ we consider the crucial features: automatic indentation, syntax highlighting, au
 hints.
 
 \subsection{Automatic Indentation}
+\label{auto-indentation}
 
 The IDE automatically indents code while typing, trying to mimic the most common ways people would indent code by hand.
 Automatic indentation may also be invoked explicitly for a selection of lines.
@@ -236,6 +238,7 @@ In.kr(4, 2)
 This is currently not implemented yet; a solution will require enhanced grammatical analysis.
 
 \subsection{Syntax Highlighting}
+\label{syntax-highlighting}
 
 Existing SuperCollider editor modes typically reuse generic support of their host editors for
 on-the-fly syntax highlighting. SC.app, albeit the oldest and most widely used environment, only
@@ -247,6 +250,7 @@ lexical rules obeyed by the SuperCollider language compiler. As a result, we hav
 correct syntax highlighting for SuperCollider language to-date.
 
 \subsection{Automatic Completion}
+\label{auto-completion}
 
 Automatic code completion (autocompletion) consists of offering the user a selection of possible
 continuations of text being typed, based on context.
@@ -332,6 +336,7 @@ As already noted, there is potential to improve the domain of autocompletion to 
 \end{itemize}
 
 \subsection{Method Call Assistance}
+\label{method-call-assistance}
 
 Method call assistance involves displaying a list of argument names and their default values, to aid
 entering expressions for arguments in a method call.
@@ -488,26 +493,59 @@ Moreover, the same shortcuts as in other GUI components may be used for class li
  \item startup file
 \end{itemize}
 
+\section{Conclusions and Ideas for Future Development}
 
-\section{Future plans}
+SuperCollider IDE has successfully reached the fundamental goal of providing a cross-platform SuperCollider coding
+environment. Not only has it integrated the individual strengths of previous coding environments, but it has brought
+important improvements on its own. It makes SuperCollider more accessible to new users, eases education and exchange of
+knowledge, as well as focuses future development work.
 
-\begin{itemize}
- \item SCDoc syntax highlighting
- \item `Desk \& cards' idea: snippets of code visually and interactively separate
- \item Visual SynthDef composer
- \item Visual Pattern composer, visualizer (integrate AlgoScore?)
- \item More integration:
- \begin{itemize}
-    \item more server controls
-    \item  embeddable GUI components created \& controlled in sclang
-    \item  scripting (sclang? other language?)
- \end{itemize}
- \item Improved looks, QML
-\end{itemize}
+Immediate benefits arise from a unified experience across Linux, Mac OS X and Windows. Furthermore, sophisticated user
+interface design and advanced code development assistance make it both easier to use by novices and a powerful tool for
+experienced users and developers.
 
-\section{Conclusions}
+As described above, possibilities for improvements have been detected especially at automatic code indentation
+(\ref{auto-indentation}) and completion (\ref{auto-completion}), and method call assistance
+(\ref{method-call-assistance}), and are simply a matter of further work.
 
-Concluding text.
+There are many ideas for future development:
+
+\paragraph{SCDoc Editing Support} \hfill
+
+Among the highest priority goals is support for syntax highlighting and editing assistance for the SCDoc markup
+language. This would be a very welcome aid in writing SuperCollider documentation, and might entice conversion of
+remaining old HTML-based documentation to the SCDoc format (there is a lot of unconverted documents in various Quarks).
+
+\paragraph{Scripting IDE Behavior} \hfill
+
+The standard SuperCollider class library includes the Document class which is used as a generic programming interface to
+various coding environments. It allows for controlling the open documents and manipulating with their contents.
+SuperCollider IDE does not support this interface yet, but the support for it is of high priority, including its
+potential extension.
+
+\paragraph{Code Snippets} \hfill
+
+An alternative code editing mode could introduce code snippets as individual interactive components. This would be
+an alternative for the current concept of \emph{regions} (\ref{code-eval}). The snippets would be separated at the
+level of graphical interface, instead of code syntax, which could allow for instance to move them freely around a
+``desk''-like area, hide and show them individually, and to evaluate their contents with a single click.
+
+\paragraph{Visual SynthDef and Pattern Composition} \hfill
+
+For some tasks it would be welcome to be able to compose SynthDefs and Patterns in a visual way, akin to visual
+programming languages like PureData, Max, etc. Various diffuse efforts in this direction exist, mostly using the
+SuperCollider language itself. Most elaborate effort is probably by Jonatan Liljedahl in his ongoing development of
+algoSCore - a SuperCollider-based successor to AlgoScore \cite{algoscore}, which includes graphical composition of
+SuperCollider Patterns and SynthDefs. We consider potential integration of work in this field into SuperCollider IDE as
+a great benefit.
+
+\paragraph{Integration of User-Created GUI} \hfill
+
+GUI creation by users would also benefit from a visual composition approach, as opposed to writing SuperCollider code.
+Moreover, it would be very practical if user-created GUIs could be integrated into the IDE's own GUI, as
+\emph{docklets} (\ref{gui}) or similar. We believe that employing the Qt Quick technology would be a good basis for this
+purpose.
+
 
 \section{Acknowledgements}
 
