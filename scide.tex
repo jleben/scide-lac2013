@@ -1,6 +1,7 @@
 \documentclass[11pt,a4paper]{article}
 \usepackage{lac2013}
 \usepackage{booktabs}
+\usepackage{moreverb}
 \sloppy
 \newenvironment{contentsmall}{\small}
 
@@ -88,6 +89,21 @@ framework for the new IDE was clear.
 
 \section{Overview of the new IDE}
 
+\subsection{System Architecture}
+
+Since an IDE demands a tight integration with the target programming language, the question was
+raised immediately whether the new IDE should be coupled with the language interpreter into one
+process, as is the case in SC.app, or rather a separate process, as in existing editor modes.
+
+Consideration of benefits and drawbacks of the two options brought decision in favor of
+separating the IDE from the interpreter: the most important benefit of this strategy is that the
+decoupling allows the IDE to survive potential crashes of the interpreter, and maintain
+responsiveness and control in case running some SuperCollider code locks up in an infinite loop.
+
+The major drawback of decoupling is increased effort for inter-process communication (IPC) with the
+interpreter. However, scel has proved that a powerful set of features may be built on top of IPC,
+and hence this did not outweight the benefits of decoupling.
+
 \subsection{Graphical Interface}
 \label{gui}
 
@@ -128,21 +144,6 @@ information like CPU utilization, number of running synths, groups, synthdefs et
   \label{fig:mainwin}
 \end{figure*}
 
-\subsection{System Architecture}
-
-Since an IDE demands a tight integration with the target programming language, the question was
-raised immediately whether the new IDE should be coupled with the language interpreter into one
-process, as is the case in SC.app, or rather a separate process, as in existing editor modes.
-
-Consideration of benefits and drawbacks of the two options brought decision in favor of
-separating the IDE from the interpreter: the most important benefit of this strategy is that the
-decoupling allows the IDE to survive potential crashes of the interpreter, and maintain
-responsiveness and control in case running some SuperCollider code locks up in an infinite loop.
-
-The major drawback of decoupling is increased effort for inter-process communication (IPC) with the
-interpreter. However, scel has proved that a powerful set of features may be built on top of IPC,
-and hence this did not outweight the benefits of decoupling.
-
 \section{Interaction}
 
 Our guidelines in interaction design were to minimize the amount of constantly visible controls, so as not to clutter
@@ -168,6 +169,7 @@ All these actions may also be accessed via the context menu associated with the 
 \ref{gui} about the status bar).
 
 \subsection{Code Evaluation}
+\label{code-eval}
 
 Code evaluation is, naturally, the most valuable functionality of a SuperCollider coding environment, and making it as
 practical as immaginable is of highest importance.
@@ -192,7 +194,46 @@ audience as well knows exactly what code is evaluated, and when.
 
 It is our goal for SuperCollider IDE to implement code-editing assistance on the level of support
 that general-purpose IDEs offer for most widely used programming languages. Namely,
-we consider the crucial features: syntax highlighting, autocompletion and method call hints.
+we consider the crucial features: automatic indentation, syntax highlighting, automatic code completion and method call
+hints.
+
+\subsection{Automatic Indentation}
+
+The IDE automatically indents code while typing, trying to mimic the most common ways people would indent code by hand.
+Automatic indentation may also be invoked explicitly for a selection of lines.
+
+Automatic indentation is done on the basis of opening and closing brackets. When a line break is entered, the new line
+is indented by one level if the previous line contains any opening brackets that are not matched with a closing bracket
+on the same line. Whenever a closing bracket is typed on a subsequent line, a previous line containing the matching
+opening bracket is searched for, and if the matching brackets are the first and the last ones on their lines,
+respectively, the current line is made to match indentation of the line above. For example:
+
+\begin{verbatimtab}[4]
+(
+p = Pseq([
+	Pbind(
+		\degree, Pwhite(0,5,5),
+		\dur, 0.1
+	),
+	Pbind(\degree, Pseq([6,7]))
+], inf)
+)
+\end{verbatimtab}
+
+As shown above, \emph{regions} (see section \ref{code-eval}) do not contribute to indentation, as is common in
+SuperCollider code.
+
+One current issue with automatic indentation remains to be addressed: indentation of line continuations. It is common
+to have one expression extend over several lines; in this case, it is typically desired to increase indentation on all
+but the first line. For example:
+
+\begin{verbatimtab}[4]
+In.kr(4, 2)
+	.lag(0.3)
+	.linexp(0, 1, 10, 1000)
+\end{verbatimtab}
+
+This is currently not implemented yet; a solution will require enhanced grammatical analysis.
 
 \subsection{Syntax highlighting}
 
@@ -205,7 +246,7 @@ efficient manner to never interfere with code typing. Attention was paid to stri
 lexical rules obeyed by the SuperCollider language compiler. As a result, we have most efficient and
 correct syntax highlighting for SuperCollider language to-date.
 
-\subsection{Autocompletion}
+\subsection{Automatic Completion}
 
 Automatic code completion (autocompletion) consists of offering the user a selection of possible
 continuations of text being typed, based on context.
