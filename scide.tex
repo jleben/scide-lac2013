@@ -29,13 +29,17 @@ Tim Blechmann
 
 \begin{abstract}
 \begin{contentsmall}
-In short: $SuperCollider_{2013} = kick\{ass\}$
+SuperCollider IDE is a new cross-platform integrated development environment for SuperCollider. It unifies user
+experience across platforms and brings improvements and new features in comparison with previous coding environments,
+making SuperCollider easier to begin with for new users, easier to teach for teachers, and more efficient to work with
+for experienced users. We present an overview and evaluation of its features, and explain motivations from the point of
+view of user experience.
 \end{contentsmall}
 \end{abstract}
 
 \keywords{
 \begin{contentsmall}
-SuperCollider
+SuperCollider, cross-platform, edit, code, GUI
 \end{contentsmall}
 }
 
@@ -47,28 +51,31 @@ a modular system based on an object oriented programming language (sclang) and a
 (scsynth)\footnote{A multiprocessor-aware alternative to scsynth is supernova \cite{blechmann11icmc}}.
 
 
-\subsection{History of SuperCollider and its Code Editing Environments}
+\subsection{History of SuperCollider and its Coding Environments}
 
 SuperCollider is heavily influenced by Smalltalk and was originally using a similar programming model: it strongly
 coupled the interpreter with the development environment. This integrated programming environment \textbf{SC.app} was
-written for MacOSX using the Cocoa framework and therefore was not portable to other platforms. It provides both a
+developed for Mac OS X using the Cocoa framework and therefore was not portable to other platforms. It provides both a
 development environment and an implementation of GUI widgets.
 
 When porting SuperCollider to Linux, Stefan Kersten implemented \textbf{scel}, a SuperCollider editor mode for Emacs
 \cite{collision}, which had been the most feature-rich editor for SuperCollider for a long time, as it not only
-supported syntax highlighting, but also some introspection, a limited form of call hints and support for the old
-HTML-based help system.
+supported syntax highlighting, but also some introspection, a limited form of method call assistance and support for the
+old HTML-based help system.
 
-At the moment, two other SuperCollider modes have been part of the official distribution: \textbf{scvim} (for vim) or
-\textbf{sced} (for gedit). Before writing the new SuperCollider IDE, one of the authors of this paper
-wrote an editor mode for Kate (\textbf{scate}). Apart from that, there were other editors or editor modes,
+At the moment, two other SuperCollider modes are part of the official distribution: \textbf{scvim} (for vim) or
+\textbf{sced} (for gedit). Before developing the new SuperCollider IDE, one of the authors of this paper developed an
+editor mode for Kate (\textbf{scate}).
+
+Apart from that, there have been other editors or editor modes, either incomplete or not maintained anymore:
 \textbf{scfront} (a Tcl/Tk based editor), \textbf{qcollider} (a Qt-based editor) and modes for the squeak Smalltalk
-environment, the TextMate editor, Eclipse and probably others \cite{collision}. For the Windows port of SuperCollider, a
-python-based editor called \textbf{PsyCollider} had first been developed \cite{dos}, but was later removed from
-SuperCollider distribution as the code was unmaintained, unstable and finally made obsolete when gedit and sced were
-ported to Windows.
+environment, the TextMate editor, Eclipse and probably others \cite{collision}. A python-based editor called
+\textbf{PsyCollider} \cite{dos} had first been distributed with the Windows port of SuperCollider, but later removed
+from
+distribution, as the code was unmaintained, unstable and made obsolete when gedit and sced were ported to
+Windows.
 
-\subsection{Motivation for the new IDE}
+\subsection{Motivation for the New IDE}
 
 Having multiple editors or programming environments for SuperCollider has numerous disadvantages:
 
@@ -85,8 +92,8 @@ merely an editor mode). The main motivation was to provide an IDE that would off
 supported platforms and that would be both easy to use for beginners and powerful so that experienced users don't feel the
 need to switch to an advanced editor like Emacs.
 
-Since Jakob had already implemented the GUI widgets of sclang in Qt to make them cross-platform, the choice of GUI
-framework for the new IDE was clear.
+Since one of the authors had also reimplemented the GUI widgets for sclang in Qt to make them cross-platform, the
+choice of GUI framework for the new IDE was clear.
 
 \section{Overview of the new IDE}
 
