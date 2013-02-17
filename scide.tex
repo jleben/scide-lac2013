@@ -492,13 +492,24 @@ for evaluation is identical to the one in the code editor, even when customized 
 Moreover, the same shortcuts as in other GUI components may be used for class library lookup (see section
 \ref{class-lib-lookup}).
 
+\section{Sessions}
+
+A \emph{session} is a snapshot of currently open documents and arrangement of GUI components that may be restored
+after the IDE is restarted. The IDE allows saving a number of different sessions and quickly switching between them,
+making it easy to store and recall the environment for different tasks.
+
 \section{Configuration}
 
+Many aspects of SuperCollider IDE can be customized, including:
 \begin{itemize}
- \item IDE config: behavior, colors, shortcuts, etc...
- \item language config
- \item startup file
+ \item behavior of automatic indentation and code evaluation
+ \item colors of the editor component and syntax highlighting
+ \item keyboard shortcuts
 \end{itemize}
+
+The IDE also makes easy configuration of the SuperCollider language interpreter. Class library directories to include
+and exclude from compilation can be configured via the GUI, removing the need to hand-edit the interpreter's
+configuration file. There is also a handy menu action to open the SuperCollider startup file.
 
 \section{Conclusions and Ideas for Future Development}
 
