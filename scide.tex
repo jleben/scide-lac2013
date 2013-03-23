@@ -193,10 +193,10 @@ the line. Moreover, since SuperCollider code is often evaluated in groups of lin
 enclosing such groups in parenthesis, then double-clicking one of the parenthesis to select the contents in order to
 evaluate them. Such groups of lines are commonly called \emph{regions}.
 
-The SuperCollider IDE goes a step further by automatically detecting the region enclosing the text cursor, so it can be
-evaluated with a shortcut without the need to select it. The evaluation behavior is intelligent: it will evaluate
-either the selection (if any), or the current region (if any), or the current line - where \emph{current} means `at the
-position of the cursor'.
+Like scel has done previously, SuperCollider IDE goes a step further by automatically detecting the region enclosing
+the text cursor, so it can be evaluated with a shortcut without the need to select it. The evaluation behavior is
+intelligent: it will evaluate either the selection (if any), or the current region (if any), or the current line - where
+\emph{current} means `at the position of the cursor'.
 
 Due to automatic region detection, large portions of code may be evaluated without selection. However, without any
 visual indication, this could easily create confusion and uncertainty as to what code has been evaluated. Hence,
