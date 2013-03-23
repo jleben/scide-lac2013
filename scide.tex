@@ -23,6 +23,7 @@ Tim Blechmann
 \hyphenation{MacOS}
 \hyphenation{scsynth}
 \hyphenation{sclang}
+\hyphenation{SuperCollider}
 
 \begin{document}
 \maketitle
@@ -151,7 +152,7 @@ The status bar on the bottom of the main window is used to show the state of the
 synthesis server. The server status box is a compact alternative to the SuperCollider server window, showing status
 information like CPU utilization, number of running synths, groups, synthdefs etc.
 
-\begin{figure*}[]
+\begin{figure*}
   \centering
   \includegraphics[width=\textwidth]{overview}
   \caption{SuperCollider IDE on Ubuntu}
@@ -268,6 +269,12 @@ correct syntax highlighting for SuperCollider language to-date.
 Automatic code completion (autocompletion) consists of offering the user a selection of possible
 continuations of text being typed, based on context.
 
+\begin{figure}[h]
+  \includegraphics{autocompletion}
+  \caption{Autocompletion in SuperCollider IDE}
+  \label{fig:autocompletion}
+\end{figure}
+
 As a weakly-typed programming language, SuperCollider poses limitations on the possibilities of
 autocompletion, compared to strongly-typed languages (e.g. C, C++). Namely, it is not always
 possible to infer the type of a variable identifier, and hence the set of its methods. We have
@@ -353,6 +360,12 @@ As already noted, there is potential to improve the domain of autocompletion to 
 
 Method call assistance involves displaying a list of argument names and their default values, to aid
 entering expressions for arguments in a method call.
+
+\begin{figure}[h]
+  \includegraphics{method_call_aid}
+  \caption{Method call assistance in SuperCollider IDE}
+  \label{fig:method_call_aid}
+\end{figure}
 
 It is implemented both for receiver notation as well as functional notation. In functional notation,
 an argument is prepended to denote the receiver of the message.
