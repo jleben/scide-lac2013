@@ -79,23 +79,28 @@ Windows.
 
 \subsection{Motivation for the New IDE}
 
-Having multiple editors or programming environments for SuperCollider has numerous disadvantages:
+The negative aspects of the situation prior to SuperCollider IDE may be summarized as follows:
 
 \begin{itemize}
 \item The user experience vastly differs among the different programming environments.
-\item Each programming environment has to be maintained separately, and long-term maintenance turned out to be a
-  problem. The scarce development resources are spread among different projects instead of focused on a single system.
 \item No existing environment is working out of the box on every supported operating system.
 \item Some environments (e.g. scvim or scel) are based on editors that are not very accessible for beginners.
 \end{itemize}
 
-In late 2011 the authors therefore decided to start the development of a new IDE dedicated to SuperCollider (not
-merely an editor mode). The main motivation was to provide an IDE that would offer a unified user experience across all
-supported platforms and that would be both easy to use for beginners and powerful so that experienced users don't feel the
-need to switch to an advanced editor like Emacs.
+The lack of a single cross-platform coding environment is a disadvantage (particularly for education of new users),
+because it renders impossible the exchange of experience among people who are forced to use different environments
+according to what is available for their operating system. Moreover, each programming environment has to be maintained
+separately, and long-term maintenance turned out to be a problem. The scarce development resources are spread among
+different projects instead of focused on a single system.
 
-Since one of the authors had also reimplemented the GUI widgets for sclang in Qt to make them cross-platform, the
-choice of GUI framework for the new IDE was clear.
+In late 2011 the authors therefore decided to start the development of a new IDE dedicated to SuperCollider (not
+merely an extension of a general-purpose code editor). The goal was to address all of the above issues by ensuring a
+unified user experience across all supported platforms and making the IDE both easy to use for beginners and powerful
+enough so that experienced users would not feel the need to switch to an advanced editor like Emacs.
+
+The choice of Qt as the underlying GUI framework for the IDE came naturally, as one of the authors had previously
+reimplemented the GUI programming classes of the SuperCollider language itself using Qt, which turned out to be quite a
+success.
 
 \section{Overview of the new IDE}
 
