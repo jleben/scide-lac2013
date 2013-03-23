@@ -47,7 +47,7 @@ SuperCollider, cross-platform, edit, code, GUI
 \section{Introduction}
 
 SuperCollider \cite{rethinking-sc} is a computer music system that was originally developed by James McCartney in the
-1990s for MacOS and has been ported to Linux and eventually Windows after it was open sourced in the early 2000s. It is
+1990s for Mac OS and has been ported to Linux and eventually Windows after it was open sourced in the early 2000s. It is
 a modular system based on an object oriented programming language (sclang) and a separate audio synthesis server
 (scsynth)\footnote{A multiprocessor-aware alternative to scsynth is supernova \cite{blechmann11icmc}}.
 
@@ -55,9 +55,10 @@ a modular system based on an object oriented programming language (sclang) and a
 \subsection{History of SuperCollider and its Coding Environments}
 
 SuperCollider is heavily influenced by Smalltalk and was originally using a similar programming model: it strongly
-coupled the interpreter with the development environment. This integrated programming environment \textbf{SC.app} was
-developed for Mac OS X using the Cocoa framework and therefore was not portable to other platforms. It provides both a
-development environment and an implementation of GUI widgets.
+coupled the interpreter with the development environment. This integrated programming environment, commonly referred to
+as \textbf{SC.app} was developed specifically for Mac OS and therefore was not portable to other platforms.
+Nevertheless, it has been preserved and evolved throughout the development of SuperCollider to date, and is still in
+very wide use.
 
 When porting SuperCollider to Linux, Stefan Kersten implemented \textbf{scel}, a SuperCollider editor mode for Emacs
 \cite{collision}, which had been the most feature-rich editor for SuperCollider for a long time, as it not only
