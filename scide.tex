@@ -61,20 +61,19 @@ Nevertheless, it has been preserved and evolved throughout the development of Su
 very wide use.
 
 When porting SuperCollider to Linux, Stefan Kersten implemented \textbf{scel}, a SuperCollider editor mode for Emacs
-\cite{collision}, which had been the most feature-rich editor for SuperCollider for a long time, as it not only
-supported syntax highlighting, but also some introspection, a limited form of method call assistance and support for the
-old HTML-based help system.
+\cite{collision}, which had been the most feature-rich solution for a long time, as it not only supported syntax
+highlighting, but also some introspection, a limited form of method call assistance and support for the old HTML-based
+help system.
 
-At the moment, two other SuperCollider modes are part of the official distribution: \textbf{scvim} (for vim) or
-\textbf{sced} (for gedit). Before developing the new SuperCollider IDE, one of the authors of this paper developed an
-editor mode for Kate (\textbf{scate}).
+At the moment, two other editor extensions are part of the official SuperCollider distribution: \textbf{scvim} (for vim)
+and \textbf{sced} (for gedit). Before developing the SuperCollider IDE, one of the authors of this paper also developed
+an extension for Kate (\textbf{scate}).
 
-Apart from that, there have been other editors or editor modes, either incomplete or not maintained anymore:
-\textbf{scfront} (a Tcl/Tk based editor), \textbf{qcollider} (a Qt-based editor) and modes for the squeak Smalltalk
+Apart from that, there have been other coding environments, either incomplete or not maintained anymore:
+\textbf{scfront} (a Tcl/Tk based editor), \textbf{qcollider} (a Qt-based editor) and extensions for the squeak Smalltalk
 environment, the TextMate editor, Eclipse and probably others \cite{collision}. A python-based editor called
 \textbf{PsyCollider} \cite{dos} had first been distributed with the Windows port of SuperCollider, but later removed
-from
-distribution, as the code was unmaintained, unstable and made obsolete when gedit and sced were ported to
+from distribution, as the code was unmaintained, unstable and made obsolete when gedit and sced were ported to
 Windows.
 
 \subsection{Motivation for the New IDE}
@@ -108,7 +107,7 @@ success.
 
 Since an IDE demands a tight integration with the target programming language, the question was
 raised immediately whether the new IDE should be coupled with the language interpreter into one
-process, as is the case in SC.app, or rather a separate process, as in existing editor modes.
+process, as is the case in SC.app, or rather a separate process, as in existing editor extensions.
 
 Consideration of benefits and drawbacks of the two options brought decision in favor of
 separating the IDE from the interpreter: the most important benefit of this strategy is that the
@@ -254,7 +253,7 @@ This is currently not implemented yet; a solution will require enhanced grammati
 \subsection{Syntax Highlighting}
 \label{syntax-highlighting}
 
-Existing SuperCollider editor modes typically reuse generic support of their host editors for
+Existing SuperCollider editor extensions typically reuse generic support of their host editors for
 on-the-fly syntax highlighting. SC.app, albeit the oldest and most widely used environment, only
 updates highlighting on explicit request via the user interface.
 
