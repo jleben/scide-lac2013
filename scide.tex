@@ -464,14 +464,15 @@ are thus very efficiently linked.
 
 \section{Help}
 
-Recently, the traditional HTML-based help system has been superseded by \textbf{SCDoc}, authored by
-Jonatan Liljedahl, where help documents are written in a markup language developed specifically
-for this purpose, and rendered to HTML on demand. The benefits are:
+Recently, the traditional HTML-based help system has been superseded by \textbf{SCDoc}, authored by Jonatan Liljedahl,
+where help documents are written in a markup language developed specifically for this purpose and rendered to HTML on
+demand. SCDoc also monitors the filesystem for changes and updates its internal index of available documents at runtime.
+The benefits are:
 \begin{itemize}
- \item Documentation is always up-to-date.
  \item Content is separate from style; consistent style can easily be applied to all documentation.
- \item Content may potentially be rendered to other formats than HTML, by implementing different
-rendering components.
+ \item Content may potentially be rendered to other formats than HTML, by implementing different rendering components.
+ \item Due to on-demand rendering and filesystem monitoring, documentation served through the system is always
+up-to-date with respect to installed documents.
 \end{itemize}
 
 Interaction with SCDoc's on-demand rendering has previously only been implemented within the SuperCollider language,
