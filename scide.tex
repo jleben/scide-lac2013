@@ -206,10 +206,21 @@ audience as well knows exactly what code is evaluated, and when.
 
 \section{Code Editing}
 
-It is our goal for SuperCollider IDE to implement code-editing assistance on the level of support
-that general-purpose IDEs offer for most widely used programming languages. Namely,
-we consider the crucial features: automatic indentation, syntax highlighting, automatic code completion and method call
-hints.
+It is our goal for SuperCollider IDE to implement code-editing assistance on the level of support that general-purpose
+IDEs offer for most widely used programming languages. Namely, we consider the crucial features: syntax highlighting,
+automatic indentation, automatic code completion and method call assistance.
+
+\subsection{Syntax Highlighting}
+\label{syntax-highlighting}
+
+Existing SuperCollider editor extensions typically reuse generic support of their host editors for
+on-the-fly syntax highlighting. SC.app, albeit the oldest and most widely used environment, only
+updates highlighting on explicit request via the user interface.
+
+Syntax highlighting in SuperCollider IDE has been implemented to update on-the-fly, and in a very
+efficient manner to never interfere with code typing. Attention was paid to strictly match the
+lexical rules obeyed by the SuperCollider language compiler. As a result, we have most efficient and
+correct syntax highlighting for SuperCollider language to-date.
 
 \subsection{Automatic Indentation}
 \label{auto-indentation}
@@ -249,18 +260,6 @@ In.kr(4, 2)
 \end{verbatimtab}
 
 This is currently not implemented yet; a solution will require enhanced grammatical analysis.
-
-\subsection{Syntax Highlighting}
-\label{syntax-highlighting}
-
-Existing SuperCollider editor extensions typically reuse generic support of their host editors for
-on-the-fly syntax highlighting. SC.app, albeit the oldest and most widely used environment, only
-updates highlighting on explicit request via the user interface.
-
-Syntax highlighting in SuperCollider IDE has been implemented to update on-the-fly, and in a very
-efficient manner to never interfere with code typing. Attention was paid to strictly match the
-lexical rules obeyed by the SuperCollider language compiler. As a result, we have most efficient and
-correct syntax highlighting for SuperCollider language to-date.
 
 \subsection{Automatic Completion}
 \label{auto-completion}
